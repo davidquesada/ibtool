@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.pyc
+
+# Ignore IB files we put in this directory.
+*.xib
+*.nib
+*.storyboard
+*.storyboardc
+*.txt
+
