@@ -182,13 +182,13 @@ def fancyPrintObjects(nib, prefix="", showencoding=False):
 			if printSubNib:
 				print prefix + '\t' + k_str + " = Encoded NIB Archive"
 				nib = readNibSectionsFromBytes(v[1])
-				fancyPrintObjects(nib, prefix + "\t")
+				fancyPrintObjects(nib, prefix + "\t", showencoding)
 
 			else: # Boring regular data.
 				if showencoding:
 					print prefix + '\t' + k_str + ' = (' + str(v[2]) + ')', v_str
 				else:
-					print '\t' + k_str + ' =', v_str
+					print prefix + '\t' + k_str + ' =', v_str
 
 			# if k_str == 'NS.bytes' and len(v_str) > 200:
 			# 	with open('embedded.nib', 'wb') as f:
