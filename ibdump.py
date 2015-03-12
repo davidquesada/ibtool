@@ -6,6 +6,8 @@ import struct
 
 def rword(bytes):
 	return struct.unpack("<I", bytes)[0]
+def rquad(bytes):
+	return struct.unpack("<q", bytes)[0]
 def rdouble(bytes):
 	return struct.unpack("<d", bytes)[0]
 def rsingle(bytes):
@@ -118,6 +120,9 @@ def readValues(bytes, valuesSection, debugKeys = []):
 		elif encoding == 0x01:	# short
 			value = struct.unpack("<H", bytes[ptr : ptr + 2])[0]
 			ptr += 2
+		elif encoding == 0x03:  # 8 byte integer
+			value = rquad(bytes[ptr:ptr+8])
+			ptr += 8
 		elif encoding == 0x04:
 			value = False
 		elif encoding == 0x05:	# true
