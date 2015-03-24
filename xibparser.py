@@ -982,11 +982,15 @@ def _xibparser_parse_segue(ctx, elem, parent):
 	# TODO: What other types of IB objects can trigger segues?
 	if parent.originalclassname() == 'UIButton':
 		con = NibObject("UIRuntimeEventConnection")
+
+		segue_phid = makePlaceholderIdentifier()
+
 		con['UILabel'] = 'perform:'
 		con['UISource'] = parent
-		con['UIDestination'] = template
+		con['UIDestination'] = NibProxyObject(segue_phid)
 		con['UIEventMask'] = 64
 		ctx.connections.append(con)
+		ctx.upstreamPlaceholders[segue_phid] = template.xibid
 
 	elif parent.originalclassname() == 'UITableViewCell':
 
